@@ -95,50 +95,58 @@ public class TradeStock {
             System.out.println("Usage: java TradeStock <file_name> <algorithm_type_number>");
             return;
         }
+        
         String fileName = args[0];
         String algoNum = args[1];
+        
         try (DataInputStream dis = new DataInputStream(new FileInputStream(fileName))) {
             int numberOfPrices = dis.readInt();
             float[] prices = new float[numberOfPrices];
-
+    
             for (int i = 0; i < numberOfPrices; i++) {
                 prices[i] = dis.readFloat();
             }
-
+            
             System.out.println("Visho Malla Oli");
             System.out.println(fileName);
-            ProfitResult maxProfit = null;
-            switch (algoNum){
-                case "0":
-                    maxProfit = findMaxProfit0(prices);
-                    System.out.println("Theta(n^2) Brute Force");
-                    System.out.println();
-                    break;
-                case "1":
-                    maxProfit = findMaxProfit1(prices);
-                    System.out.println("Theta(nlogn) Divide and Conquer");
-                    
-                    break;
-                case "2":
-//                    result = findMaxProfit2(prices);
-                    System.out.println("Theta(n) Divide and Conquer");
-                    break;
-                case "3":
-//                    result = findMaxProfit3(prices);
-                    System.out.println("Theta(n) Decrease and Conquer");
-                    break;
-                default:
-                    System.out.println("Invalid algorithm number");
-                    System.out.println("Usage: 0 <= <algorithm_type_number> <= 3");
-            }
-            System.out.println(maxProfit.buyDay + ", " + maxProfit.sellDay + ", " + maxProfit.profit);
-
+            executeSelectedAlgorithm(algoNum, prices);
+            
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + fileName);
         } catch (IOException e) {
             System.err.println("Error reading file: " + fileName);
         }
-
+    }
+    
+    private static void executeSelectedAlgorithm(String algoNum, float[] prices) {
+        ProfitResult maxProfit;
+        String algorithmType;
+        
+        switch (algoNum) {
+            case "0":
+                maxProfit = findMaxProfit0(prices);
+                algorithmType = "Theta(n^2) Brute Force";
+                break;
+            case "1":
+                maxProfit = findMaxProfit1(prices);
+                algorithmType = "Theta(nlogn) Divide and Conquer";
+                break;
+            case "2":
+                // maxProfit = findMaxProfit2(prices);
+                algorithmType = "Theta(n) Divide and Conquer";
+                break;
+            case "3":
+                // maxProfit = findMaxProfit3(prices);
+                algorithmType = "Theta(n) Decrease and Conquer";
+            default:;
+                System.out.println("Invalid algorithm number. Usage: 0 <= <algorithm_type_number> <= 2");
+                return;
+        }
+        
+        System.out.println(algorithmType);
+        if (maxProfit != null) {
+            System.out.println(maxProfit.buyDay + ", " + maxProfit.sellDay + ", " + maxProfit.profit);
+        }
     }
 }
 
