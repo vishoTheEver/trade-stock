@@ -86,6 +86,51 @@ public class TradeStock {
     }
 
     /*
+        Algorithm Number: 2
+        Algorithm Type: Divide and Conquer
+        Algorithm Time Complexity: Theta(n)
+     */
+//    public static ProfitResult findMaxProfit2(float[] prices){
+//        int mid = prices.length / 2;
+//
+//        float minPriceFirstHalf = findMin(prices, 0, mid);
+//        float maxPriceSecondHalf = findMax(prices, mid+1, prices.length - 1);
+//
+//        float crossHalfProfit = maxPriceSecondHalf - minPriceFirstHalf;
+//
+//        float maxProfitFirstHalf = findMaxProfitSingleHalf(prices, 0, mid);
+//        float maxProfitSecondHalf = findMaxProfitSingleHalf(prices, mid+1, prices.length -1);
+//
+//        float maxProfit = Math.max(Math.max(maxProfitFirstHalf, maxProfitSecondHalf), crossHalfProfit);
+//    }
+
+    /*
+        Algorithm Number: 3
+        Algorithm Type: Decrease and Conquer
+        Algorithm Time Complexity: Theta(n)
+     */
+    public static ProfitResult findMaxProfit3(float[] prices){
+        if (prices.length <  2) return new ProfitResult(-1, -1, 0);
+
+        int minPriceDay = 0;
+        float maxProfit = Float.MAX_VALUE;
+        int maxProfitBuyDay = Integer.MIN_VALUE;
+        int maxProfitSellDay = Integer.MIN_VALUE;
+
+        for (int currentDay = 1; currentDay < prices.length; currentDay++){
+            if (prices[currentDay] - prices[minPriceDay] > maxProfit){
+                maxProfit = prices[currentDay] - prices[minPriceDay];
+                maxProfitBuyDay = minPriceDay;
+                maxProfitSellDay = currentDay;
+            }
+
+            if (prices[currentDay] < prices[minPriceDay]) minPriceDay = currentDay;
+        }
+
+        return new ProfitResult(maxProfitBuyDay, maxProfitSellDay, maxProfit);
+    }
+
+    /*
         Main Method
         - includes implementation of the args from the terminal and implements it.
         - added try catch block.
@@ -119,7 +164,7 @@ public class TradeStock {
     }
     
     private static void executeSelectedAlgorithm(String algoNum, float[] prices) {
-        ProfitResult maxProfit;
+        ProfitResult maxProfit = null;
         String algorithmType;
         
         switch (algoNum) {
@@ -129,14 +174,14 @@ public class TradeStock {
                 break;
             case "1":
                 maxProfit = findMaxProfit1(prices);
-                algorithmType = "Theta(nlogn) Divide and Conquer";
+                algorithmType = "Theta(nlog(n)) Divide and Conquer";
                 break;
             case "2":
                 // maxProfit = findMaxProfit2(prices);
                 algorithmType = "Theta(n) Divide and Conquer";
                 break;
             case "3":
-                // maxProfit = findMaxProfit3(prices);
+                 maxProfit = findMaxProfit3(prices);
                 algorithmType = "Theta(n) Decrease and Conquer";
             default:;
                 System.out.println("Invalid algorithm number. Usage: 0 <= <algorithm_type_number> <= 2");
