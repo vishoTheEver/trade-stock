@@ -1,20 +1,48 @@
 import java.io.*;
 
 public class TradeStock {
-
     static class ProfitResult {
-        int buyIndex;
-        int sellIndex;
+        int buyDay;
+        int sellDay;
         float profit;
 
-        ProfitResult(int buyIndex, int sellIndex, float profit){
-            this.buyIndex = buyIndex;
-            this.sellIndex = sellIndex;
+        ProfitResult(int buyDay, int sellDay, float profit){
+            this.buyDay = buyDay;
+            this.sellDay = sellDay;
             this.profit = profit;
         }
     }
 
-    public static ProfitResult findMaxProfit(float[] prices) {
+    /*
+        Algorithm Number: 0
+        Algorithm Type: Brute Force
+        Algorithm Time Complexity: Theta(n^2)
+     */
+    public static ProfitResult findMaxProfit0(float[] prices) {
+        int maxProfitBuyDay = Integer.MIN_VALUE;
+        int maxProfitSellDay = Integer.MIN_VALUE;
+        float maxProfit = Float.MIN_VALUE;
+        for (int buyDay = 0; buyDay < prices.length - 1; buyDay++){
+            for (int sellDay = buyDay + 1; sellDay < prices.length; sellDay++){
+                float profit = prices[sellDay] - prices[buyDay];
+                if (profit > maxProfit){
+                    maxProfit = profit;
+                    maxProfitBuyDay = buyDay;
+                    maxProfitSellDay = sellDay;
+                }
+            }
+        }
+        return new ProfitResult(maxProfitBuyDay, maxProfitSellDay, maxProfit);
+    }
+
+
+    /*
+        Algorithm Number: 1
+        Algorithm Type: Divide and Conquer
+        Algorithm Time Complexity: Theta(nlog(n))
+     */
+
+    public static ProfitResult findMaxProfit1(float[] prices) {
         return findMaxProfitHelper(prices, 0, prices.length - 1);
     }
     private static ProfitResult findMaxProfitHelper(float[] prices, int start, int end) {
@@ -57,12 +85,18 @@ public class TradeStock {
         }
     }
 
+    /*
+        Main Method
+        - includes implementation of the args from the terminal and implements it.
+        - added try catch block.
+     */
     public static void main(String[] args) {
-        if (args.length < 1) {
-            System.out.println("Usage: java TradeStock <file_name>");
+        if (args.length < 2) {
+            System.out.println("Usage: java TradeStock <file_name> <algorithm_type_number>");
             return;
         }
         String fileName = args[0];
+        String algoNum = args[1];
         try (DataInputStream dis = new DataInputStream(new FileInputStream(fileName))) {
             int numberOfPrices = dis.readInt();
             float[] prices = new float[numberOfPrices];
@@ -70,11 +104,34 @@ public class TradeStock {
             for (int i = 0; i < numberOfPrices; i++) {
                 prices[i] = dis.readFloat();
             }
-            ProfitResult result = findMaxProfit(prices);
+
             System.out.println("Visho Malla Oli");
             System.out.println(fileName);
-            System.out.println("Theta(n) Divide and Conquer");
-            System.out.println(result.buyIndex + ", " + result.sellIndex + ", " + result.profit);
+            ProfitResult maxProfit = null;
+            switch (algoNum){
+                case "0":
+                    maxProfit = findMaxProfit0(prices);
+                    System.out.println("Theta(n^2) Brute Force");
+                    System.out.println();
+                    break;
+                case "1":
+                    maxProfit = findMaxProfit1(prices);
+                    System.out.println("Theta(nlogn) Divide and Conquer");
+                    
+                    break;
+                case "2":
+//                    result = findMaxProfit2(prices);
+                    System.out.println("Theta(n) Divide and Conquer");
+                    break;
+                case "3":
+//                    result = findMaxProfit3(prices);
+                    System.out.println("Theta(n) Decrease and Conquer");
+                    break;
+                default:
+                    System.out.println("Invalid algorithm number");
+                    System.out.println("Usage: 0 <= <algorithm_type_number> <= 3");
+            }
+            System.out.println(maxProfit.buyDay + ", " + maxProfit.sellDay + ", " + maxProfit.profit);
 
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + fileName);
