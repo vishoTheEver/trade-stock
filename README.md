@@ -1,7 +1,3 @@
-Certainly! Here's a short, engaging README template for GitHub, tailored for Dr. Chen's Stock Price Prediction Model project. This README includes emojis, an introduction, and a placeholder for an image file. Make sure to replace `[https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.investopedia.com%2Fnews%2Fwhy-amazons-stock-poised-rise-14%2F&psig=AOvVaw3aQTLS6ejReTIWvTYQ0O9_&ust=1712889113646000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNi76qqPuYUDFQAAAAAdAAAAABAE]` with the actual path to your image in the repository.
-
----
-
 # Stock Price Prediction Model :chart_with_upwards_trend:
 
 Welcome to the Stock Price Prediction Model project! As the US stock market navigates through a Bear market, this project aims to leverage machine learning insights to predict stock prices, enabling users to make informed decisions about when to buy and sell stocks for maximum profit. This tool is designed to help manage retirement funds efficiently, embodying Dr. Chen's dream of achieving early retirement through smart investments.
@@ -10,7 +6,7 @@ Welcome to the Stock Price Prediction Model project! As the US stock market navi
 
 This project introduces a command-line program, `TradeStock`, which predicts optimal purchasing (𝐴) and selling (𝐵) times from a series of stock prices to maximize profit. Inspired by the volatility witnessed during the GameStop stock phenomena, this model emphasizes safe investment strategies by disallowing short selling. The aim is to provide a reliable tool for investors to navigate the stock market more effectively.
 
-![Stock Prediction Model](/[Image File Path])
+![Stock Prediction Model](/https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.investopedia.com%2Fnews%2Fwhy-amazons-stock-poised-rise-14%2F&psig=AOvVaw3aQTLS6ejReTIWvTYQ0O9_&ust=1712889113646000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNi76qqPuYUDFQAAAAAdAAAAABAE)
 
 ## Features :sparkles:
 
@@ -51,7 +47,3 @@ This project was developed by [Your Name or GitHub Username], inspired by Dr. Ch
 ## License :page_facing_up:
 
 This project is licensed under the MIT License - see the LICENSE.md file for details.
-
----
-
-Make sure to adjust the placeholders (e.g., `[Your Name or GitHub Username]`, `[Image File Path]`) to fit your project details. Additionally, if you plan to include a license, ensure you have a `LICENSE.md` file in your repository with the license text.
