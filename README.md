@@ -1,4 +1,4 @@
-Certainly! Here's a short, engaging README template for GitHub, tailored for Dr. Chen's Stock Price Prediction Model project. This README includes emojis, an introduction, and a placeholder for an image file. Make sure to replace `[Image File Path]` with the actual path to your image in the repository.
+Certainly! Here's a short, engaging README template for GitHub, tailored for Dr. Chen's Stock Price Prediction Model project. This README includes emojis, an introduction, and a placeholder for an image file. Make sure to replace `[https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.investopedia.com%2Fnews%2Fwhy-amazons-stock-poised-rise-14%2F&psig=AOvVaw3aQTLS6ejReTIWvTYQ0O9_&ust=1712889113646000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNi76qqPuYUDFQAAAAAdAAAAABAE]` with the actual path to your image in the repository.
 
 ---
 
