@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="TradeStock">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/TradeStock.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
