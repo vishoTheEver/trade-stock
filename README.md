@@ -6,7 +6,7 @@ Welcome to the Stock Price Prediction Model project! As the US stock market navi
 
 This project introduces a command-line program, `TradeStock`, which predicts optimal purchasing (𝐴) and selling (𝐵) times from a series of stock prices to maximize profit. Inspired by the volatility witnessed during the GameStop stock phenomena, this model emphasizes safe investment strategies by disallowing short selling. The aim is to provide a reliable tool for investors to navigate the stock market more effectively.
 
-![Stock Prediction Model](/https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.investopedia.com%2Fnews%2Fwhy-amazons-stock-poised-rise-14%2F&psig=AOvVaw3aQTLS6ejReTIWvTYQ0O9_&ust=1712889113646000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNi76qqPuYUDFQAAAAAdAAAAABAE)
+![Stock Prediction Model](/[https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.investopedia.com%2Fnews%2Fwhy-amazons-stock-poised-rise-14%2F&psig=AOvVaw3aQTLS6ejReTIWvTYQ0O9_&ust=1712889113646000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNi76qqPuYUDFQAAAAAdAAAAABAE])
 
 ## Features :sparkles:
 
