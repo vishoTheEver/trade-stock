@@ -103,6 +103,30 @@ public class TradeStock {
 //
 //        float maxProfit = Math.max(Math.max(maxProfitFirstHalf, maxProfitSecondHalf), crossHalfProfit);
 //    }
+    public static ProfitResult findMaxProfit2(float[] prices){
+        if(prices.length < 2) return  new ProfitResult(-1,-1,0);
+
+        int minPriceDay = 0;
+        int maxProfitBuyDay = 0;
+        int maxProfitSellDay = 1;
+        float maxProfit = 0;
+        float minPrice = prices[0];
+
+        for (int day = 1; day < prices.length; day++){
+            if (prices[day] - minPrice > maxProfit){
+                maxProfit = prices[day] - minPrice;
+                maxProfitBuyDay = minPriceDay;
+                maxProfitSellDay = day;
+            }
+
+            if (prices[day] < minPrice){
+                minPrice = prices[day];
+                minPriceDay = day;
+            }
+        }
+
+        return new ProfitResult(maxProfitBuyDay, maxProfitSellDay, maxProfit);
+    }
 
     /*
         Algorithm Number: 3
@@ -113,9 +137,9 @@ public class TradeStock {
         if (prices.length <  2) return new ProfitResult(-1, -1, 0);
 
         int minPriceDay = 0;
-        float maxProfit = Float.MAX_VALUE;
-        int maxProfitBuyDay = Integer.MIN_VALUE;
-        int maxProfitSellDay = Integer.MIN_VALUE;
+        float maxProfit = 0;
+        int maxProfitBuyDay = 0;
+        int maxProfitSellDay = 1;
 
         for (int currentDay = 1; currentDay < prices.length; currentDay++){
             if (prices[currentDay] - prices[minPriceDay] > maxProfit){
@@ -143,6 +167,7 @@ public class TradeStock {
         
         String fileName = args[0];
         String algoNum = args[1];
+        int size = 0;
         
         try (DataInputStream dis = new DataInputStream(new FileInputStream(fileName))) {
             int numberOfPrices = dis.readInt();
@@ -150,10 +175,12 @@ public class TradeStock {
     
             for (int i = 0; i < numberOfPrices; i++) {
                 prices[i] = dis.readFloat();
+                size++;
             }
             
             System.out.println("Visho Malla Oli");
             System.out.println(fileName);
+            System.out.println("Input size = " + size);
             executeSelectedAlgorithm(algoNum, prices);
             
         } catch (FileNotFoundException e) {
@@ -166,7 +193,8 @@ public class TradeStock {
     private static void executeSelectedAlgorithm(String algoNum, float[] prices) {
         ProfitResult maxProfit = null;
         String algorithmType;
-        
+
+        long startTime = System.currentTimeMillis();
         switch (algoNum) {
             case "0":
                 maxProfit = findMaxProfit0(prices);
@@ -177,21 +205,25 @@ public class TradeStock {
                 algorithmType = "Theta(nlog(n)) Divide and Conquer";
                 break;
             case "2":
-                // maxProfit = findMaxProfit2(prices);
+                 maxProfit = findMaxProfit2(prices);
                 algorithmType = "Theta(n) Divide and Conquer";
                 break;
             case "3":
                  maxProfit = findMaxProfit3(prices);
                 algorithmType = "Theta(n) Decrease and Conquer";
+                break;
             default:;
                 System.out.println("Invalid algorithm number. Usage: 0 <= <algorithm_type_number> <= 2");
                 return;
         }
-        
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+
         System.out.println(algorithmType);
         if (maxProfit != null) {
             System.out.println(maxProfit.buyDay + ", " + maxProfit.sellDay + ", " + maxProfit.profit);
         }
+        System.out.println("Time taken in milli seconds: " + elapsedTime);
     }
 }
 
