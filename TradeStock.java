@@ -90,19 +90,6 @@ public class TradeStock {
         Algorithm Type: Divide and Conquer
         Algorithm Time Complexity: Theta(n)
      */
-//    public static ProfitResult findMaxProfit2(float[] prices){
-//        int mid = prices.length / 2;
-//
-//        float minPriceFirstHalf = findMin(prices, 0, mid);
-//        float maxPriceSecondHalf = findMax(prices, mid+1, prices.length - 1);
-//
-//        float crossHalfProfit = maxPriceSecondHalf - minPriceFirstHalf;
-//
-//        float maxProfitFirstHalf = findMaxProfitSingleHalf(prices, 0, mid);
-//        float maxProfitSecondHalf = findMaxProfitSingleHalf(prices, mid+1, prices.length -1);
-//
-//        float maxProfit = Math.max(Math.max(maxProfitFirstHalf, maxProfitSecondHalf), crossHalfProfit);
-//    }
     public static ProfitResult findMaxProfit2(float[] prices){
         if(prices.length < 2) return  new ProfitResult(-1,-1,0);
 
